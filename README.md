@@ -1,6 +1,8 @@
 # Favicon-Microservice
 Microservice for grabbing url favicon
 
+For some reason the README exists in the main branch, while the code lives in the master branch (not sure what I did wrong here)
+
 General Info! ---------------------------------------------------------------------------------------------------------
 
 A. How to programmatically request data:
