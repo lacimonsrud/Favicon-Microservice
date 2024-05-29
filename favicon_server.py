@@ -19,20 +19,31 @@ while True:
 
     # Use favicon library to grab icon from url
     # You need to supply a url including the https://
-    icons = favicon.get(url)
 
-    # Favicon function grabs multiple icons
-    # first one in array should be the one we want
-    icon = icons[0]
 
-    #  Do some 'work'
-    time.sleep(1)
+    
+    # Check to see if any icons exist
+    if(favicon.get(url)):
+        icons = favicon.get(url)
 
-    # Optional Print statement to show response
-    print(f"Server sending response: {icon.url}")
+        # Favicon function grabs multiple icons
+        # first one in array should be the one we want
+        icon = icons[0]
 
-    # Send reply back to client
-    socket.send_string(icon.url)
+        #  Do some 'work'
+        time.sleep(1)
+
+        # Optional Print statement to show response
+        print(f"Server sending response: {icon.url}")
+
+        # Send reply back to client
+        socket.send_string(icon.url)
+    
+    else:
+        print(f"Favicon not found. Server sending error response....")
+
+        socket.send(b"FAVICON_NOT_FOUND")
+
 
 ###############################################################################
 
