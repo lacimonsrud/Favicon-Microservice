@@ -22,8 +22,8 @@ while True:
 
 
     
-    # Check to see if any icons exist
-    if(favicon.get(url)):
+    # Try to find favicon from given url
+    try:
         icons = favicon.get(url)
 
         # Favicon function grabs multiple icons
@@ -38,9 +38,10 @@ while True:
 
         # Send reply back to client
         socket.send_string(icon.url)
-    
-    else:
-        print(f"Favicon not found. Server sending error response....")
+
+    # Let client know if favicon not found or server unresponsive
+    except Exception as err:
+        print(f"Unable to retrieve favicon: {err}")
 
         socket.send(b"FAVICON_NOT_FOUND")
 
